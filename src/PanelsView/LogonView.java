@@ -75,7 +75,12 @@ public class LogonView extends javax.swing.JPanel {
 
         jT_Username.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jT_Username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jT_Username.setText("MarkHj");
+        jT_Username.setText("english");
+        jT_Username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jT_UsernameActionPerformed(evt);
+            }
+        });
         jT_Username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jT_UsernameFocusGained(evt);
@@ -87,7 +92,7 @@ public class LogonView extends javax.swing.JPanel {
 
         jT_Password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jT_Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jT_Password.setText("1421");
+        jT_Password.setText("1111");
         jT_Password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jT_PasswordFocusGained(evt);
@@ -175,6 +180,10 @@ public class LogonView extends javax.swing.JPanel {
     private void jB_NewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_NewUserActionPerformed
         createUser();
     }//GEN-LAST:event_jB_NewUserActionPerformed
+
+    private void jT_UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_UsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jT_UsernameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,6 +11,19 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/PanelsView/MealsPlanView.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/Handler/MealsHandler.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/Controller/MealsController.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/Model/IngredientsGroup.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/PanelsButtom/MealsTypeBottom.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/Handler/IngredientsHandler.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/PanelsView/LogonView.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/Controller/IngredientsController.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/Handler/AdminHandler.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/PanelsView/CardLayoutView.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/Model/Meals.java</file>
+            <file>file:/C:/Users/markh/Documents/NetBeansProjects/FoodProgram/src/PanelsButtom/MealsSelectedBottom.java</file>
+        </group>
     </open-files>
 </project-private>
