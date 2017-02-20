@@ -26,13 +26,13 @@ public class MealsHandler {
     private MealsController mealsController;
     private MealsGroup selectedMealGroups;
     private ArrayList<Meals> selectedMealsList;
-    private ArrayList<Meals> selectedMealsLis;
+    private ArrayList<Meals> randomMealsList;
     private int foundDays;
 
     private MealsHandler() throws ClassNotFoundException, SQLException {
         listeners = Listeners.getList();
         language = Language.getInstance();
-        selectedMealsLis = new ArrayList();
+        randomMealsList = new ArrayList();
         foundDays = 0;
         selectedMealGroups = null;
         selectedMealsList = new ArrayList<>();
@@ -79,6 +79,11 @@ public class MealsHandler {
         listeners.notifyListeners("Selected Meal Added");
     }
 
+    public void deleteSelectedMeal(Meals meal) {
+        selectedMealsList.remove(meal);
+        listeners.notifyListeners("Selected Meal Deleted");
+    }
+
     public ArrayList<Meals> getSelectedMealList() {
         return selectedMealsList;
     }
@@ -102,8 +107,8 @@ public class MealsHandler {
         }
         return amountOfDays;
     }
-    
-    public int getMaxAmountOfDays(){
+
+    public int getMaxAmountOfDays() {
         int days = 0;
         for (Meals meal : mealsController.getAllMeals()) {
             days = days + meal.getDaysAmount();
@@ -121,7 +126,7 @@ public class MealsHandler {
         while (foundDays < amountOfDays) {
             int ranNumber = ran.nextInt(allMealList.size());
             meal = allMealList.get(ranNumber);
-            for (Meals mealList : selectedMealsLis) {
+            for (Meals mealList : randomMealsList) {
                 if (mealList.getName(language.getLanguage()).equals(meal.getName(language.getLanguage()))) {
                     isThere = true;
                     allMealList.remove(ranNumber);
@@ -137,34 +142,37 @@ public class MealsHandler {
 
         }
         listeners.notifyListeners("Random Meals Founded");
-        return selectedMealsLis;
+        return randomMealsList;
     }
-    
-    public int getMixFoundDays(){
+
+    public int getMixFoundDays() {
         return foundDays;
     }
 
     public void addMealToRandom(Meals meal) {
         boolean isThere = false;
-        for (int i = 0; i < selectedMealsLis.size(); i++) {
-            if (selectedMealsLis.get(i).getName(language.getLanguage()).equals(meal.getName(language.getLanguage()))) {
+        for (int i = 0; i < randomMealsList.size(); i++) {
+            if (randomMealsList.get(i).getName(language.getLanguage()).equals(meal.getName(language.getLanguage()))) {
                 isThere = true;
             }
         }
         if (!isThere) {
-            selectedMealsLis.add(meal);
+            randomMealsList.add(meal);
         }
     }
 
     public ArrayList<Meals> getFoundMeals() {
-        return selectedMealsLis;
+        return randomMealsList;
     }
-    
-    
-    
-    public void deleteMixMeals(){
-        selectedMealsLis = new ArrayList<>();
+
+    public void deleteMixMeals() {
+        randomMealsList = new ArrayList<>();
         listeners.notifyListeners("Remove Mix Meals");
     }
 
+    public ArrayList<Meals> getSearchMeal(String search){
+        return mealsController.getSearchMeals(search, language.getLanguage());
+    }
+    
+    
 }

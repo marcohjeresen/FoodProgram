@@ -98,5 +98,19 @@ public class MealsController {
         }
         return allMealList;
     }
+    
+    public ArrayList<Meals> getSearchMeals(String search, boolean englishLang){
+        ArrayList<Meals> searchMeals = new ArrayList<>();
+        try{      
+            ResultSet rs = db.query("call getsearchmeals('%" + search + "%'," + englishLang +")");
+            while (rs.next())  {
+                Meals m = new Meals(rs.getInt("mea_number"), rs.getString("mea_englishname"), rs.getString("mea_danishname"), null, rs.getInt("mea_amountdays"), rs.getInt("mea_totalprice"), null);
+                searchMeals.add(m);
+            } 
+        } catch (SQLException ex){
+            Logger.getLogger(MealsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return searchMeals;
+    }
 
 }

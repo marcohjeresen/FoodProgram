@@ -34,7 +34,6 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
     private Language language;
     private Listeners listeners;
 
-
     /**
      * Creates new form MealsPlanView
      */
@@ -49,18 +48,18 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
         initComponents();
         listeners.addListener(this);
         setSize(new Dimension(1195, 760));
-        jSlider1.setMaximum(mealsHandler.getMaxAmountOfDays() -1);
+        jSlider1.setMaximum(mealsHandler.getMaxAmountOfDays() - 1);
         showAllGroups();
         setMixMealsText();
     }
-    
-    public void setMixMealsText(){
+
+    public void setMixMealsText() {
         int days = jSlider1.getValue();
         if (language.getLanguage()) {
-            jB_MixMeals.setText("Mix For "+days+" Days");
+            jB_MixMeals.setText("Mix For " + days + " Days");
             jB_deleteMix.setText("Remove Mixed Meals");
-        }else{
-            jB_MixMeals.setText("Mix Til "+days+" Dage");
+        } else {
+            jB_MixMeals.setText("Mix Til " + days + " Dage");
             jB_deleteMix.setText("Fjern Alle");
         }
     }
@@ -107,20 +106,20 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
             msb.setLocation(0, ((5 * i) + (msb.getHeight() * i)));
             msb.setVisible(true);
             int count = i + 1;
-            jP_SelectedMeals.setPreferredSize(new Dimension(msb.getWidth() , ((5 * count) + (msb.getHeight() * count))));
+            jP_SelectedMeals.setPreferredSize(new Dimension(msb.getWidth(), ((5 * count) + (msb.getHeight() * count))));
         }
         if (language.getLanguage()) {
-            jL_TotalPrice.setText("Total Price: "+mealsHandler.getSelectedMealsPrice());
+            jL_TotalPrice.setText("Total Price: " + mealsHandler.getSelectedMealsPrice());
             jL_AmountOfDays.setText("Total Amount Of Days: " + mealsHandler.getSelectedMealsDays());
-        } else{
-            jL_TotalPrice.setText("Total Pris: "+mealsHandler.getSelectedMealsPrice());
+        } else {
+            jL_TotalPrice.setText("Total Pris: " + mealsHandler.getSelectedMealsPrice());
             jL_AmountOfDays.setText("Total Antal Dage: " + mealsHandler.getSelectedMealsDays());
         }
         jP_SelectedMeals.revalidate();
         jP_SelectedMeals.repaint();
     }
-    
-    public void showMixedMeals(){
+
+    public void showMixedMeals() {
         MealsMixBottom mb;
         ArrayList<Meals> mixMealList = mealsHandler.FindRandomMeals(jSlider1.getValue() - 1);
         jP_MixAList.removeAll();
@@ -132,16 +131,33 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
             int count = i + 1;
             jP_MixAList.setPreferredSize(new Dimension(mb.getWidth(), ((5 * count) + (mb.getHeight() * count))));
         }
-        jSlider1.setMaximum(jSlider1.getMaximum() - mealsHandler.getMixFoundDays() -1);
-        
+        jSlider1.setMaximum(jSlider1.getMaximum() - mealsHandler.getMixFoundDays() - 1);
+
         jP_MixAList.revalidate();
         jP_MixAList.repaint();
     }
-    
-    private void addRandomMeals(){
+
+    private void addRandomMeals() {
         for (Meals meal : mealsHandler.getFoundMeals()) {
             mealsHandler.addSelectedMeal(meal);
         }
+    }
+    
+    
+    private void searchMeals(){
+        MealsBottom mealsB;
+        ArrayList<Meals> mealsList = mealsHandler.getSearchMeal(jT_mealsSearch.getText());
+        jP_Meals.removeAll();
+        for (int i = 0; i < mealsList.size(); i++) {
+            mealsB = new MealsBottom(mealsList.get(i));
+            jP_Meals.add(mealsB);
+            mealsB.setLocation(5, ((5 * i) + (mealsB.getHeight() * i)));
+            mealsB.setVisible(true);
+            int count = i + 1;
+            jP_Meals.setPreferredSize(new Dimension(mealsB.getWidth(), ((5 * count) + (mealsB.getHeight() * count))));
+        }
+        jP_Meals.revalidate();
+        jP_Meals.repaint();
     }
 
     /**
@@ -159,8 +175,8 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
         jP_typesOfMeals = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jT_mealsSearch = new javax.swing.JTextField();
+        jB_SearchMeals = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jP_Meals = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -214,13 +230,16 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Search For Meals");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jT_mealsSearch.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jT_mealsSearch.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton3.setText("Search");
-        jButton3.setEnabled(false);
+        jB_SearchMeals.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jB_SearchMeals.setText("Search");
+        jB_SearchMeals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_SearchMealsActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setBorder(null);
 
@@ -247,8 +266,8 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jT_mealsSearch)
+                    .addComponent(jB_SearchMeals, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jScrollPane2)
         );
@@ -259,9 +278,9 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jT_mealsSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jB_SearchMeals, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -438,7 +457,7 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
         setMixMealsText();
         if (jSlider1.getValue() != 0) {
             jB_MixMeals.setEnabled(true);
-        }else{
+        } else {
             jB_MixMeals.setEnabled(false);
         }
     }//GEN-LAST:event_jSlider1StateChanged
@@ -456,12 +475,16 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
         addRandomMeals();
     }//GEN-LAST:event_jB_addRandomToSelectedActionPerformed
 
+    private void jB_SearchMealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_SearchMealsActionPerformed
+       searchMeals();
+    }//GEN-LAST:event_jB_SearchMealsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_MixMeals;
+    private javax.swing.JButton jB_SearchMeals;
     private javax.swing.JButton jB_addRandomToSelected;
     private javax.swing.JButton jB_deleteMix;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jL_AmountOfDays;
     private javax.swing.JLabel jL_TotalPrice;
@@ -481,7 +504,7 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jT_mealsSearch;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -497,6 +520,10 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
                 jSlider1.setMaximum(mealsHandler.getMaxAmountOfDays());
                 jSlider1.setMinimum(0);
                 jSlider1.setValue(0);
+                break;
+            case "Selected Meal Deleted":
+                showSelectedMeals();
+                break;
             default:
         }
     }
