@@ -142,9 +142,8 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
             mealsHandler.addSelectedMeal(meal);
         }
     }
-    
-    
-    private void searchMeals(){
+
+    public void showSearchMeals() {
         MealsBottom mealsB;
         ArrayList<Meals> mealsList = mealsHandler.getSearchMeal(jT_mealsSearch.getText());
         jP_Meals.removeAll();
@@ -287,7 +286,7 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Selected Meals", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Rounded MT Bold", 0, 14))); // NOI18N
 
         jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton4.setText("End Planning");
+        jButton4.setText("Move To Shopping List");
         jButton4.setEnabled(false);
 
         jL_AmountOfDays.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -476,7 +475,7 @@ public class MealsPlanView extends javax.swing.JPanel implements ActionListener 
     }//GEN-LAST:event_jB_addRandomToSelectedActionPerformed
 
     private void jB_SearchMealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_SearchMealsActionPerformed
-       searchMeals();
+        showSearchMeals();
     }//GEN-LAST:event_jB_SearchMealsActionPerformed
 
 

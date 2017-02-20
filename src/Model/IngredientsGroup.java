@@ -12,13 +12,42 @@ package Model;
 public class IngredientsGroup {
     
     private int groupId;
-    private String groupName;
+    private String danishName;
+    private String englishName;
 
-    public IngredientsGroup(int groupId, String groupName) {
+    public IngredientsGroup(int groupId, String danishName, String englishName) {
         this.groupId = groupId;
-        this.groupName = groupName;
+        this.danishName = danishName;
+        this.englishName = englishName;
     }
 
+public String getName(boolean english) {
+        if (english) {
+            if (!englishName.equals("")) {
+                return englishName;
+            }else{
+                return danishName;
+            }
+        }else {
+            if (!danishName.equals("")) {
+                return danishName;
+            }else{
+                return englishName;
+            }
+            
+        }
+        
+    }
+
+    public void setDanishName(String danishName) {
+        this.danishName = danishName;
+    }
+
+
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
+    }
+    
     public int getGroupId() {
         return groupId;
     }
@@ -27,14 +56,6 @@ public class IngredientsGroup {
         this.groupId = groupId;
     }
 
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-    
-    
+  
     
 }

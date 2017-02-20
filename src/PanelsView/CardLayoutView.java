@@ -29,6 +29,7 @@ public class CardLayoutView extends javax.swing.JPanel {
     private AdminHandler adminHandler;
     private AdminView adminView;
     private MealsPlanView mealsPlanView;
+    private IngredientsView ingredientsView;
 
     /**
      * Creates new form PlanView
@@ -37,6 +38,7 @@ public class CardLayoutView extends javax.swing.JPanel {
         planViewPanel = new PlanView();
         adminView = new AdminView();
         mealsPlanView = new MealsPlanView();
+        ingredientsView = new IngredientsView();
         listeners = Listeners.getList();
         language = Language.getInstance();
         try {
@@ -50,9 +52,12 @@ public class CardLayoutView extends javax.swing.JPanel {
         cardLayout = (CardLayout) jP_card.getLayout();
         cardLayout.addLayoutComponent(jP_admin, "Admin");
         cardLayout.addLayoutComponent(jP_Meals, "Meals");
+        cardLayout.addLayoutComponent(jP_ingre, "Ingredients");
         jP_admin.add(adminView);
         jP_Meals.add(mealsPlanView);
+        jP_ingre.add(ingredientsView);
         cardLayout.show(jP_card, "Meals");
+        jT_dishes.setSelected(true);
         buttomLanguage();
         jT_admin.setEnabled(adminHandler.isAdminLogon());
     }
@@ -125,6 +130,7 @@ public class CardLayoutView extends javax.swing.JPanel {
         jP_card = new javax.swing.JPanel();
         jP_admin = new javax.swing.JPanel();
         jP_Meals = new javax.swing.JPanel();
+        jP_ingre = new javax.swing.JPanel();
         jT_dishes = new javax.swing.JToggleButton();
         jT_Ingredients = new javax.swing.JToggleButton();
         jT_information = new javax.swing.JToggleButton();
@@ -161,6 +167,19 @@ public class CardLayoutView extends javax.swing.JPanel {
 
         jP_card.add(jP_Meals, "card3");
 
+        javax.swing.GroupLayout jP_ingreLayout = new javax.swing.GroupLayout(jP_ingre);
+        jP_ingre.setLayout(jP_ingreLayout);
+        jP_ingreLayout.setHorizontalGroup(
+            jP_ingreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1195, Short.MAX_VALUE)
+        );
+        jP_ingreLayout.setVerticalGroup(
+            jP_ingreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
+        );
+
+        jP_card.add(jP_ingre, "card4");
+
         jT_dishes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jT_dishes.setText("jToggleButton1");
         jT_dishes.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +198,7 @@ public class CardLayoutView extends javax.swing.JPanel {
 
         jT_information.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jT_information.setText("jToggleButton3");
+        jT_information.setEnabled(false);
         jT_information.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jT_informationActionPerformed(evt);
@@ -203,6 +223,7 @@ public class CardLayoutView extends javax.swing.JPanel {
 
         jT_favorite.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jT_favorite.setText("jToggleButton1");
+        jT_favorite.setEnabled(false);
         jT_favorite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jT_favoriteActionPerformed(evt);
@@ -211,6 +232,7 @@ public class CardLayoutView extends javax.swing.JPanel {
 
         jT_dislike.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jT_dislike.setText("jToggleButton1");
+        jT_dislike.setEnabled(false);
         jT_dislike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jT_dislikeActionPerformed(evt);
@@ -278,6 +300,7 @@ public class CardLayoutView extends javax.swing.JPanel {
 
     private void jT_IngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_IngredientsActionPerformed
         selectToogleButtom("ingredients");
+        chancePage("Ingredients");
     }//GEN-LAST:event_jT_IngredientsActionPerformed
 
     private void jT_informationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_informationActionPerformed
@@ -295,6 +318,7 @@ public class CardLayoutView extends javax.swing.JPanel {
     private javax.swing.JPanel jP_Meals;
     private javax.swing.JPanel jP_admin;
     private javax.swing.JPanel jP_card;
+    private javax.swing.JPanel jP_ingre;
     private javax.swing.JToggleButton jT_Ingredients;
     private javax.swing.JToggleButton jT_admin;
     private javax.swing.JToggleButton jT_dishes;

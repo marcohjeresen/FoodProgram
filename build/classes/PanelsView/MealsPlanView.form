@@ -31,7 +31,6 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder justification="2" title="Plan Meals">
-              <Border PropertyName="innerBorder" info="null"/>
               <Font PropertyName="font" name="Arial Rounded MT Bold" size="18" style="0"/>
             </TitledBorder>
           </Border>
@@ -273,7 +272,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Rounded MT Bold" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="End Planning"/>
+                <Property name="text" type="java.lang.String" value="Move To Shopping List"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>

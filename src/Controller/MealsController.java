@@ -26,13 +26,11 @@ public class MealsController {
     private Database db;
     private Listeners listeners;
     private Meals meals;
-    private ArrayList<Meals> mealList;
 
     private MealsController() throws ClassNotFoundException, SQLException {
         db = new Database();
         listeners = Listeners.getList();
         meals = null;
-        mealList = new ArrayList<>();
     }
 
     public static MealsController getInstance() throws ClassNotFoundException, SQLException {
